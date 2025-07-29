@@ -1,0 +1,25 @@
+volumes:
+  node-data:
+
+networks:
+  inet:
+
+services:
+  node:
+    image: zkverify/para-evm-node:${NODE_VERSION?err_unset}
+    container_name: ${NODE_ROLE?err_unset}
+    hostname: ${NODE_ROLE?err_unset}
+    restart: on-failure:5
+    env_file:
+      - .env
+    networks:
+      inet:
+    ports:
+      - "${NODE_NET_P2P_PORT?err_unset}:${NODE_NET_P2P_PORT?err_unset}"
+    volumes:
+      - "node-data:/data:rw"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "512m"
+        max-file: "4"
