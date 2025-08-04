@@ -167,9 +167,9 @@ check_required_variables() {
     "NODE_VERSION"
     "NODE_ROLE"
     "NODE_NET_P2P_PORT"
-    "EVM_CONF_NAME"
-    "EVM_CONF_BASE_PATH"
-    "EVM_CONF_CHAIN"
+    "PARA_CONF_NAME"
+    "PARA_CONF_BASE_PATH"
+    "PARA_CONF_CHAIN"
   )
 
   if [ "${NODE_TYPE}" = "boot-node" ]; then
@@ -180,26 +180,26 @@ check_required_variables() {
       "NGINX_NET_IP_ADDRESS"
       "NODE_NET_IP_ADDRESS"
       "NODE_NET_P2P_PORT_WS"
-      "EVM_CONF_LISTEN_ADDR"
-      "EVM_NODE_KEY"
+      "PARA_CONF_LISTEN_ADDR"
+      "PARA_NODE_KEY"
     )
   fi
 
   if [ "${NODE_TYPE}" = "collator-node" ]; then
     TO_CHECK+=(
-      "EVM_CONF_COLLATOR"
-      "EVM_NODE_KEY"
-      "EVM_SECRET_PHRASE"
+      "PARA_CONF_COLLATOR"
+      "PARA_NODE_KEY"
+      "PARA_SECRET_PHRASE"
     )
   fi
 
   if [ "${NODE_TYPE}" = "rpc-node" ]; then
     TO_CHECK+=(
       "NODE_NET_RPC_PORT"
-      "EVM_CONF_RPC_CORS"
-      "EVM_CONF_RPC_EXTERNAL"
-      "EVM_CONF_RPC_METHODS"
-      "EVM_CONF_PRUNING"
+      "PARA_CONF_RPC_CORS"
+      "PARA_CONF_RPC_EXTERNAL"
+      "PARA_CONF_RPC_METHODS"
+      "PARA_CONF_PRUNING"
     )
   fi
 
@@ -253,7 +253,7 @@ create_node_key() {
   if [ -z "${node_key}" ]; then
     fn_die "\nError: node key is empty. Fix it before proceeding any further. Exiting...\n"
   fi
-  sed -i "s/EVM_NODE_KEY=.*/EVM_NODE_KEY=\"${node_key}\"/g" "${ENV_FILE}" || fn_die "\nError: could not set name 'EVM_NODE_KEY' variable in ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
+  sed -i "s/PARA_NODE_KEY=.*/PARA_NODE_KEY=\"${node_key}\"/g" "${ENV_FILE}" || fn_die "\nError: could not set name 'PARA_NODE_KEY' variable in ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
   if [ "${node_key_provided}" != "true" ]; then
     printf "%s" "${node_key}" > "${DEPLOYMENT_DIR}/configs/node/secrets/node_key.dat"
     chmod 0400 "${DEPLOYMENT_DIR}/configs/node/secrets/node_key.dat"
@@ -288,7 +288,7 @@ create_secret_phrase() {
   if [ -z "${secret_phrase}" ]; then
     fn_die "\nError: secret phrase is empty. Fix it before proceeding any further. Exiting...\n"
   fi
-  sed -i "s/EVM_SECRET_PHRASE=.*/EVM_SECRET_PHRASE=\"${secret_phrase}\"/g" "${ENV_FILE}" || fn_die "\nError: could not set name 'EVM_SECRET_PHRASE' variable in ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
+  sed -i "s/PARA_SECRET_PHRASE=.*/PARA_SECRET_PHRASE=\"${secret_phrase}\"/g" "${ENV_FILE}" || fn_die "\nError: could not set name 'PARA_SECRET_PHRASE' variable in ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
   sleep 2
 }
 
@@ -305,7 +305,7 @@ set_up_node_name_env_var() {
       read -rp "#? " node_name
     done
   fi
-  sed -i "s/EVM_CONF_NAME=.*/EVM_CONF_NAME=${node_name}/g" "${ENV_FILE}" || fn_die "\nError: could not set name variable in ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
+  sed -i "s/PARA_CONF_NAME=.*/PARA_CONF_NAME=${node_name}/g" "${ENV_FILE}" || fn_die "\nError: could not set name variable in ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
 }
 
 set_up_rpc_methods_env_var() {
@@ -313,7 +313,7 @@ set_up_rpc_methods_env_var() {
   if [ "${rpc_methods_answer}" = "yes" ]; then
     log_warn "\nPlease select the rpc methods you want to use: "
     rpc_methods="$(selection "safe unsafe auto")"
-    sed -i "s/EVM_CONF_RPC_METHODS=.*/EVM_CONF_RPC_METHODS=${rpc_methods}/g" "${ENV_FILE}" || fn_die "\nError: could not set rpc methods variable in ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
+    sed -i "s/PARA_CONF_RPC_METHODS=.*/PARA_CONF_RPC_METHODS=${rpc_methods}/g" "${ENV_FILE}" || fn_die "\nError: could not set rpc methods variable in ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
   fi
 }
 
@@ -326,7 +326,7 @@ set_up_pruning_env_var() {
       log_warn "\nPruning value cannot be empty. Try again..."
       read -rp "#? " pruning_value
     done
-    sed -i "s/EVM_CONF_PRUNING=.*/EVM_CONF_PRUNING=${pruning_value}/g" "${ENV_FILE}" || fn_die "\nError: could not set pruning configuration variable in ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
+    sed -i "s/PARA_CONF_PRUNING=.*/PARA_CONF_PRUNING=${pruning_value}/g" "${ENV_FILE}" || fn_die "\nError: could not set pruning configuration variable in ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
   fi
 }
 
@@ -339,7 +339,7 @@ set_up_rpc_max_batch_request_len() {
       log_warn "\nMaximum number of requests allowed in a single RPC batch value cannot be empty. Try again..."
       read -rp "#? " max_batch_request_len_value
     done
-    echo "EVM_CONF_RPC_MAX_BATCH_REQUEST_LEN=${max_batch_request_len_value}" >> "${ENV_FILE}" || fn_die "\nError: could not set a limit for the max length per RPC batch request variable in ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
+    echo "PARA_CONF_RPC_MAX_BATCH_REQUEST_LEN=${max_batch_request_len_value}" >> "${ENV_FILE}" || fn_die "\nError: could not set a limit for the max length per RPC batch request variable in ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
   fi
 }
 
