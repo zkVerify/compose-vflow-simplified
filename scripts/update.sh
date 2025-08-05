@@ -106,7 +106,7 @@ done
 
 log_info "\n=== ${ENV_FILE} update completed successfully"
 
-log_info "\n=== Please review the changes in the ${ENV_FILE} file, if there is anything wrong you can restore from the backup ${backup_dir}"
+log_red "\n=== Please review the changes in the ${ENV_FILE} file, if there is anything wrong you can restore from the backup ${backup_dir}"
 
 log_info "\n=== Project has been updated correctly for ${NODE_TYPE} on ${NETWORK}"
 log_info "\n=== Start the compose project with the following command: "
