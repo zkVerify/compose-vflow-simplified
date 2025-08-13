@@ -26,8 +26,8 @@ cp "${ROOT_DIR}/compose_files/docker-compose-${NODE_TYPE}.yml" "${DEPLOYMENT_DIR
 # Define the auto update variables
 auto_update_vars=(
   "NODE_VERSION"
-  "EVM_CONF_RPC_EXTERNAL"
-  "EVM_CONF_COLLATOR"
+  "PARA_CONF_RPC_EXTERNAL"
+  "PARA_CONF_COLLATOR"
 )
 
 conditional_update_vars=()

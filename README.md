@@ -47,16 +47,16 @@ Each snapshot is a **.tar.gz** archive containing the **db** directory, intended
 
 ### Optional: ZKV Node Secrets Injection
 
-During the initial deployment **depending on the node type**, if prompted, the script will generate and store **EVM_NODE_KEY** and **EVM_SECRET_PHRASE** values in the `.env` file.
+During the initial deployment **depending on the node type**, if prompted, the script will generate and store **PARA_NODE_KEY** and **PARA_SECRET_PHRASE** values in the `.env` file.
 
 Alternatively, these secrets can be injected at runtime using a custom container entrypoint script to avoid keeping them in plaintext on disk.
 
 Use the following steps to implement this approach:
 
-1. Delete values of **EVM_NODE_KEY** and **EVM_SECRET_PHRASE** under the `deployments/${NODE_TYPE}/${NETWORK}/.env`
+1. Delete values of **PARA_NODE_KEY** and **PARA_SECRET_PHRASE** under the `deployments/${NODE_TYPE}/${NETWORK}/.env`
     ```bazaar
-    EVM_NODE_KEY=""
-    EVM_SECRET_PHRASE=""
+    PARA_NODE_KEY=""
+    PARA_SECRET_PHRASE=""
     ```
 2. Create **entrypoint_secrets.sh** file under `deployments/${NODE_TYPE}/${NETWORK}/` directory. For example:
     ```
