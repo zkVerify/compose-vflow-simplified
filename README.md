@@ -1,6 +1,6 @@
 # Compose zkverify evm parachain simplified
 
-This repository contains all the resources for deploying a zkverify evm PARACHAIN rpc, collator, or boot node.
+This repository contains resources for deploying zkverify evm PARACHAIN nodes,including RPC, collator and boot nodes, on both the **testnet** and **mainnet**.
 
 
 ## Project overview
@@ -135,3 +135,4 @@ Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for information on h
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
+
