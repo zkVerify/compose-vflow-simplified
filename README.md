@@ -1,7 +1,6 @@
-# Compose zkverify evm parachain simplified
+# Compose vflow simplified
 
-This repository contains resources for deploying zkverify evm PARACHAIN nodes,including RPC, collator and boot nodes, on both the **testnet** and **mainnet**.
-
+This repository contains resources for deploying VFlow nodes,including RPC, collator and boot nodes, on both the **testnet** and **mainnet**.
 
 ## Project overview
 
@@ -34,7 +33,7 @@ Run the [init.sh](./scripts/init.sh) script and follow the instructions in order
 
 The script will generate the required deployment files under the [deployments](deployments) directory.
 
-## Optional: ZKV Node Data Snapshots _(Work in Progress)_
+### Optional: ZKV Node Data Snapshots _(Work in Progress)_
 
 To reduce the time required for a node's startup, **daily snapshots of chain data** are available here (PLACEHOLDER).
 

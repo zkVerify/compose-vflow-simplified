@@ -137,7 +137,7 @@ verify_required_commands() {
 
   command -v docker &>/dev/null || fn_die "${FUNCNAME[0]} Error: 'docker' is required to run this script, see installation instructions at 'https://docs.docker.com/engine/install/'."
 
-  (docker compose version 2>&1 | grep -q v2) || fn_die "${FUNCNAME[0]} Error: 'docker compose' is required to run this script, see installation instructions at 'https://docs.docker.com/compose/install/'."
+  (docker compose version 2>&1 | grep -q "v2\|version 2") || fn_die "${FUNCNAME[0]} Error: 'docker compose' is required to run this script, see installation instructions at 'https://docs.docker.com/compose/install/'."
 
   if [ "$(uname)" = "Darwin" ]; then
     command -v gsed &>/dev/null || fn_die "${FUNCNAME[0]} Error: 'gnu-sed' is required to run this script in MacOS environment, see installation instructions at 'https://formulae.brew.sh/formula/gnu-sed'. Make sure to add it to your PATH."
@@ -240,6 +240,9 @@ set_deployment_dir() {
 
 set_env_file() {
   ENV_FILE_TEMPLATE="${ROOT_DIR}/env/${NETWORK}/.env.${NODE_TYPE}.template"
+  if [ ! -s "${ENV_FILE_TEMPLATE}" ]; then
+    fn_die "\nError: Environment template file '${ENV_FILE_TEMPLATE}' is missing or empty. Exiting ..."
+  fi
   ENV_FILE="${DEPLOYMENT_DIR}/.env"
   export ENV_FILE_TEMPLATE
   export ENV_FILE
