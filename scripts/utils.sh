@@ -210,7 +210,6 @@ check_required_variables() {
       "PARA_CONF_RPC_EXTERNAL"
       "PARA_CONF_RPC_METHODS"
       "PARA_CONF_PRUNING"
-      "PARA_CONF_RPC_MAX_CONNECTIONS"
     )
   fi
 
