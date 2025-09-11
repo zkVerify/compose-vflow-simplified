@@ -14,7 +14,6 @@ set_deployment_dir
 
 set_env_file
 
-
 if [ -d "${DEPLOYMENT_DIR}" ]; then
   overwrite_deployment_dir_answer="$(selection_yn "\nDeployment directory already exists. Do you want to overwrite it?")"
   if [ "${overwrite_deployment_dir_answer}" = "yes" ]; then
@@ -34,6 +33,7 @@ if ! [ -d "${DEPLOYMENT_DIR}" ]; then
   if ! [ -f "${ENV_FILE}" ]; then
     log_info "\n=== Creating .env file"
     cp "${ENV_FILE_TEMPLATE}" "${ENV_FILE}"
+    chmod 0600 "${ENV_FILE}"
     # shellcheck source=.env
     source "${ENV_FILE}" || fn_die "\nError: could not source ${ENV_FILE} file. Fix it before proceeding any further. Exiting...\n"
 
