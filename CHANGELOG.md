@@ -1,17 +1,10 @@
-# Changelog
-**0.2.2+1**
----
-
-CHANGES:
+## 1.0.0
 * node: VFlow version set to `latest`
 * general: support for mainnet added
 * automation: added support for setting optional --pool-limit and --pool-kbytes parameters for RPC node
 * automation: added functionality to preserve optional variables during upgrade process
 
-**0.2.2**
----
-
-CHANGES:
+## 0.2.2
 * node: VFlow version set to `0.2.2-1.0.0`
 
 ENVIRONMENT VARIABLE CHANGES:
@@ -19,8 +12,5 @@ ENVIRONMENT VARIABLE CHANGES:
 * new mandatory variable `ZKV_CONF_CHAIN`
 
 
-**0.2.1**
----
-
-CHANGES:
+## 0.2.1
 * node: VFlow version set to `0.2.1-0.2.0`
