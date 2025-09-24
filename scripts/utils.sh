@@ -180,6 +180,8 @@ check_required_variables() {
     "PARA_CONF_NAME"
     "PARA_CONF_BASE_PATH"
     "PARA_CONF_CHAIN"
+    "PARA_CONF_NO_PRIVATE_IP"
+    "PARA_CONF_NO_MDNS"
   )
 
   if [ "${NODE_TYPE}" = "boot-node" ]; then
