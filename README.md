@@ -84,8 +84,7 @@ To use a snapshot:
    ```shell
    ./scripts/start.sh
    ```
-- Verify the snapshot is working by checking the logs for `Highest known block at`, which should be close to the current chain height.
-- Watch the logs until you can see the block height increasing.
+- Verify the snapshot is working by checking the node's Docker logs to ensure the **relay** and **para** chains’ block heights start near their respective current heights and continue steadily increasing.
 
 ### Optional: VFlow Node Secrets Injection
 
