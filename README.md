@@ -48,7 +48,7 @@ Snapshots are available in two forms:
 
 Each snapshot is a **.tar.gz** archive containing the **db** directory, intended to replace the **db** directory generated during the initial node run.
 
-You will need to download both the ZKVerify and the VFlow snapshots.
+You will need to download both the zkVerify(relay chain) and the VFlow(para chain) snapshots.
 
 To use a snapshot:
 
@@ -57,18 +57,28 @@ To use a snapshot:
    ./scripts/stop.sh
    ```
 - Navigate to the VFlow node's data directory. This may require `sudo` permissions. For an RPC node, the path is:
-   ```
-   cd /var/lib/docker/volumes/zkverify-rpc_node-data/_data/node/chains/<zkv_mainnet or zkv_testnet>
-   ```
+    - For testnet:
+        ```
+        cd /var/lib/docker/volumes/vflow-testnet_node-data/_data/node/chains/vflow_testnet
+        ```
+    - For mainnet:
+        ```
+        cd /var/lib/docker/volumes/vflow_node-data/_data/node/chains/vflow_mainnet
+        ```
 - Note the owner and permissions of the existing `db` directory, then delete it.
 - Extract the downloaded VFlow snapshot and move its `db` directory into the current directory.
 - Ensure the new `db` directory has the same permissions as the original db directory.
-- Navigate to the ZKVerify node's data directory. This may require `sudo` permissions. For an RPC node, the path is:
-   ```
-   cd /var/lib/docker/volumes/zkverify-para-evm_node-data/_data/node/zkv_relay/chains/<zkv_mainnet or zkv_testnet>
-   ```
+- Navigate to the zkVerify node's data directory. This may require `sudo` permissions. For an RPC node, the path is:
+    - For testnet:
+        ```
+        cd /var/lib/docker/volumes/vflow-testnet_node-data/_data/node/zkv_relay/chains/zkv_testnet
+        ```
+    - For mainnet:
+        ```
+        cd /var/lib/docker/volumes/vflow_node-data/_data/node/zkv_relay/chains/zkv_mainnet
+        ```
 - Note the owner and permissions of the existing `db` directory, then delete it.
-- Extract the downloaded ZKVerify snapshot and move its `db` directory into the current directory.
+- Extract the downloaded zkVerify snapshot and move its `db` directory into the current directory.
 - Ensure the new `db` directory has the same permissions as the original db directory.
 - Return to the project directory and start the node:
    ```shell
