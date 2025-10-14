@@ -35,6 +35,48 @@ This script will generate all necessary deployment files under the [deployments]
 ./scripts/init.sh
 ```
 
+### Optional: VFlow Node Data Snapshots
+
+To reduce the time required for a node's startup, **daily snapshots of chain data** are available for:
+- Mainnet: https://bootstraps.zkverify.io/
+- Testnet: https://bootstraps.zkverify.io/volta
+
+Snapshots are available in two forms:
+
+- **Node snapshot**
+- **Archive node snapshot**
+
+Each snapshot is a **.tar.gz** archive containing the **db** directory, intended to replace the **db** directory generated during the initial node run.
+
+You will need to download both the ZKVerify and the VFlow snapshots.
+
+To use a snapshot:
+
+- Stop the running node:
+   ```shell
+   ./scripts/stop.sh
+   ```
+- Navigate to the VFlow node's data directory. This may require `sudo` permissions. For an RPC node, the path is:
+   ```
+   cd /var/lib/docker/volumes/zkverify-rpc_node-data/_data/node/chains/<zkv_mainnet or zkv_testnet>
+   ```
+- Note the owner and permissions of the existing `db` directory, then delete it.
+- Extract the downloaded VFlow snapshot and move its `db` directory into the current directory.
+- Ensure the new `db` directory has the same permissions as the original db directory.
+- Navigate to the ZKVerify node's data directory. This may require `sudo` permissions. For an RPC node, the path is:
+   ```
+   cd /var/lib/docker/volumes/zkverify-para-evm_node-data/_data/node/zkv_relay/chains/<zkv_mainnet or zkv_testnet>
+   ```
+- Note the owner and permissions of the existing `db` directory, then delete it.
+- Extract the downloaded ZKVerify snapshot and move its `db` directory into the current directory.
+- Ensure the new `db` directory has the same permissions as the original db directory.
+- Return to the project directory and start the node:
+   ```shell
+   ./scripts/start.sh
+   ```
+- Verify the snapshot is working by checking the logs for `Highest known block at`, which should be close to the current chain height.
+- Watch the logs until you can see the block height increasing.
+
 ### Optional: VFlow Node Secrets Injection
 
 During the initial deployment **depending on the node type**, if prompted, the script will generate and store **PARA_NODE_KEY** and **PARA_SECRET_PHRASE** values in the `.env` file.
