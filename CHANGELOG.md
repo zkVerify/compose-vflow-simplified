@@ -1,3 +1,6 @@
+## 1.0.2
+* collator-node: add **PARA_CONF_BLOCKS_PRUNING=1000** and **ZKV_CONF_BLOCKS_PRUNING=14400**
+
 ## 1.0.1
 node: added **PARA_CONF_NO_PRIVATE_IP** and **PARA_CONF_NO_MDNS** as failsafe mechanism to prevent network abuse from the node
 
