@@ -1,3 +1,6 @@
+## 1.0.3
+* boot-node: pin the relay p2p port (**ZKV_CONF_PORT=30335**) so the parachain reclaims `/tcp/30334/ws`; the relay was defaulting to parachain port + 1 (30334) and stealing the parachain's ws listener, breaking the ws/wss bootnode endpoints
+
 ## 1.0.2
 * collator-node: add **PARA_CONF_BLOCKS_PRUNING=1000** and **ZKV_CONF_BLOCKS_PRUNING=14400**
 
