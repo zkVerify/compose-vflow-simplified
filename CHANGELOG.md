@@ -1,3 +1,10 @@
+## 1.0.4
+* node: VFlow version for testnet pinned to `2.0.0-rc2`
+* node: added optional **PARA_CONF_PUBLIC_ADDR** variable
+* automation: `init.sh` and `update.sh` scripts prompt to set **PARA_CONF_PUBLIC_ADDR**
+* automation: `docker compose` version check accepts v2 and newer
+* automation: interactive menus list one option per line
+
 ## 1.0.3
 * boot-node: pin the relay p2p port (**ZKV_CONF_PORT=30335**) so the parachain reclaims `/tcp/30334/ws`; the relay was defaulting to parachain port + 1 (30334) and stealing the parachain's ws listener, breaking the ws/wss bootnode endpoints
 
