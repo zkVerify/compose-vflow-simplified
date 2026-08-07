@@ -1,3 +1,6 @@
+## 2.0.0
+* node: VFlow version pinned to `2.0.0` for testnet and mainnet
+
 ## 1.0.4
 * node: VFlow version for testnet pinned to `2.0.0-rc2`
 * node: added optional **PARA_CONF_PUBLIC_ADDR** variable
