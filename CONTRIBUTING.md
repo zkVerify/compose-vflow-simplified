@@ -16,3 +16,19 @@
 
 1. Simply people who like to code and are nice people to work with. That's it!
 
+# Versioning and releases
+
+Tags are repo-level semver, not the node version. Each release's node version is set per network in the env templates (`NODE_VERSION`) and listed in `CHANGELOG.md`. One tag covers both networks, which may run different node versions.
+
+- Node bump: minor or major. Other changes: patch or minor.
+- If only one network moves, still one repo bump; name that network in the CHANGELOG (e.g. `1.0.4` set testnet to `2.0.0-rc2`, mainnet unchanged).
+
+Release: bump the env templates, add a `## <version>` CHANGELOG entry, open a PR, then cut a gpg-signed tag `<version>` on `main` after merge.
+
+# Naming conventions
+
+- Roles: `boot-node`, `rpc-node`, `collator-node`.
+- Paths: `compose_files/docker-compose-<role>.yml`, `env/<network>/.env.<role>.template` (`<network>` is `testnet` or `mainnet`).
+- Env prefixes: `NODE_*` (node and container metadata), `PARA_CONF_*` (parachain/collator arguments), `ZKV_CONF_*` (embedded relay-chain arguments); the `vflow-node` binary runs both.
+- `COMPOSE_PROJECT_NAME`: mainnet bare, testnet appends `-testnet` (`vflow`, `vflow-testnet`).
+- Image: `zkverify/vflow-node:${NODE_VERSION}`.
