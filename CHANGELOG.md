@@ -1,3 +1,6 @@
+## 2.0.1
+* boot-node: HTTP/2 disabled on `nginx-proxy` and the node's host set as its default host (hardening). Run `update.sh` and recreate the containers to apply
+
 ## 2.0.0
 * node: VFlow version pinned to `2.0.0` for testnet and mainnet
 
